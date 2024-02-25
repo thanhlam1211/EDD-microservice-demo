@@ -34,9 +34,9 @@ jobs:
         distribution: 'temurin'
         cache: maven
         
-    - name: Build with Maven
-      working-directory: ${{ matrix.image }}
-      run: mvn -B package --file pom.xml
+    # - name: Build with Maven
+    #   working-directory: ${{ matrix.image }}
+    #   run: mvn -B package --file pom.xml
             
     - name: Build Docker Image with Jib
       run: mvn clean compile jib:dockerBuild
