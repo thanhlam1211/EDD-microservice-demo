@@ -45,6 +45,7 @@ jobs:
         password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
         
     - name: Build Docker Image with Jib
+      working-directory: .
       run: mvn clean package -P build-docker-image
 
     - name: Extract metadata (tags, labels) for Docker
