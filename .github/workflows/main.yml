@@ -17,7 +17,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        image: ["product_service", "inventory_service", "order_service", "notification_service", "discovery_service", "api-gateway"]
+        image: ["product-service", "inventory-service", "order-service", "notification-service", "discovery-service", "api-gateway"]
         
     permissions:
       contents: read
@@ -44,9 +44,9 @@ jobs:
         username: ${{ secrets.DOCKER_HUB_USERNAME }}
         password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
         
-    - name: Build Docker Image with Jib
-      working-directory: .
-      run: mvn clean package -P build-docker-image
+#    - name: Build Docker Image with Jib
+#      working-directory: .
+#      run: mvn clean package -P build-docker-image
 
     - name: Extract metadata (tags, labels) for Docker
       id: meta
