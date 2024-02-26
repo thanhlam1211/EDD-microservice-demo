@@ -48,7 +48,6 @@ jobs:
         
     - name: Build with Maven
       run:
-        clean install
         mvn -B package --file pom.xml
 
     - name: Log in to the Container registry
