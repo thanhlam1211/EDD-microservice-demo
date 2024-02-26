@@ -52,7 +52,7 @@ jobs:
       id: meta
       uses: docker/metadata-action@v4
       with:
-        images: ${{ env.REGISTRY }}/${{ secrets.DOCKER_HUB_USERNAME }}/${{ matrix.image }}::latest
+        images: ${{ matrix.image }}
         
     - name: Build and push Docker images
       uses: docker/build-push-action@v3
