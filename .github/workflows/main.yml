@@ -17,8 +17,20 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        image: ["product-service", "inventory-service", "order-service", "notification-service", "discovery-service", "api-gateway"]
-        
+        include:
+          - dockerfile: product-service/Dockerfile
+            image: ghcr.io/1211/product-service
+          - dockerfile: inventory-service/Dockerfile
+            image: ghcr.io/1211/inventory-service
+          - dockerfile: order-service/Dockerfile
+            image: ghcr.io/1211/order-service
+          - dockerfile: notification-service/Dockerfile
+            image: ghcr.io/1211/notification-service
+          - dockerfile: discovery-service/Dockerfile
+            image: ghcr.io/1211/discovery-service
+          - dockerfile: api-gateway/Dockerfile
+            image: ghcr.io/1211/api-gateway
+                  
     permissions:
       contents: read
       packages: write
@@ -58,7 +70,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         context: .
-        file: ${{ matrix.image }}/Dockerfile
+        file: ${{ matrix.dockerfile }}
         push: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
