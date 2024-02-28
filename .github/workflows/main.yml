@@ -77,7 +77,7 @@ jobs:
         # Add other environment variables if needed
       run: |
         {
-          echo "MYSQL_DATABASE= "order-service"
+          echo "MYSQL_DATABASE=order-service"
           echo "MYSQL_HOST=127.0.0.1"
           echo "MYSQL_PORT=3306"
           echo "MYSQL_ROOT_PASSWORD=lamdepzai123"
