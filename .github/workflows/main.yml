@@ -36,6 +36,9 @@ jobs:
       packages: write
       
     steps:
+    - name: Use Docker Compose
+      uses: act/setup-docker@v3
+      
     - name: Checkout code
       uses: actions/checkout@v3
       
@@ -45,6 +48,23 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+        
+    - name: Run database container
+      run: docker run --name mysql -d mysql:8.0 --default-character-set=utf8mb4 --collation=utf8mb4_unicode_ci
+      
+    - name: Wait for database to start
+      run: |
+        while ! nc -z mysql 3306; do sleep 3; done
+    - name: Set up database environment variables
+      env:
+        MYSQL_HOST: mysql
+        MYSQL_PORT: 3306
+        MYSQL_ROOT_PASSWORD: root  # Replace with your actual password
+        # Add other environment variables if needed
+      run: |
+        echo "::set-env name=MYSQL_HOST::mysql"
+        echo "::set-env name=MYSQL_PORT::3306"
+        echo "::set-env name=MYSQL_ROOT_PASSWORD::root"  # Replace with your actual password
         
     - name: Build with Maven
       run:
