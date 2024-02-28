@@ -98,14 +98,14 @@ jobs:
       env:
         MYSQL_DATABASE: inventory-service
         MYSQL_HOST: 127.0.0.1
-        MYSQL_PORT: 3306
+        MYSQL_PORT: 3300
         MYSQL_ROOT_PASSWORD: lamdepzai123  # Replace with your actual password
         # Add other environment variables if needed
       run: |
         {
           echo "MYSQL_DATABASE=inventory-service"
           echo "MYSQL_HOST=127.0.0.1"
-          echo "MYSQL_PORT=3306"
+          echo "MYSQL_PORT=3300"
           echo "MYSQL_ROOT_PASSWORD=lamdepzai123"
         } >> "$GITHUB_ENV"
         
