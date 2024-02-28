@@ -82,12 +82,6 @@ jobs:
           echo "MYSQL_PORT=3306"
           echo "MYSQL_ROOT_PASSWORD=lamdepzai123"
         } >> "$GITHUB_ENV"
-
-    - name: start mysql
-      run: sudo /etc/init.d/mysql start
-
-    - name: Create test database
-      run: mysql -uroot -proot < project/db/init.sql
       
     - name: Build with Maven
       run:
