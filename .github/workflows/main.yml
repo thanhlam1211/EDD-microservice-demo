@@ -74,6 +74,7 @@ jobs:
         MYSQL_ROOT_PASSWORD: lamdepzai123  # Replace with your actual password
         # Add other environment variables if needed
       run: |
+        echo 'ACTIONS_ALLOW_UNSECURE_COMMANDS=true'
         echo "::set-env name=MYSQL_HOST::localhost"
         echo "::set-env name=MYSQL_PORT::3306"
         echo "::set-env name=MYSQL_ROOT_PASSWORD::lamdepzai123"  # Replace with your actual password
