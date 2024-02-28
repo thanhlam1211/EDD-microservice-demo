@@ -59,7 +59,7 @@ jobs:
           MYSQL_DATABASE: inventory-service
           MYSQL_ROOT_PASSWORD: lamdepzai123
         ports:
-          - 3306:3306
+          - 3300:3300
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3  
         
     steps:
