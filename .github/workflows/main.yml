@@ -36,9 +36,6 @@ jobs:
       packages: write
       
     steps:
-    - name: Use Docker Compose
-      uses: actions/setup-docker@v3
-      
     - name: Checkout code
       uses: actions/checkout@v3
       
