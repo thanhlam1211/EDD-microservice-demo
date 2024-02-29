@@ -12,6 +12,7 @@ on:
 
 jobs:
   build-and-push-image:
+    permissions: write-all
     runs-on: ubuntu-latest
     
     strategy:
@@ -31,9 +32,9 @@ jobs:
           - dockerfile: api-gateway/Dockerfile
             image: ghcr.io/1211/api-gateway
                   
-    permissions:
-      contents: read
-      packages: write-all
+    # permissions:
+    #   contents: read
+    #   packages: write-all
       
     services:
       mysql-1:
