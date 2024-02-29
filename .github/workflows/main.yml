@@ -33,7 +33,7 @@ jobs:
                   
     permissions:
       contents: read
-      packages: write
+      packages: write-all
       
     services:
       mysql-1:
