@@ -130,16 +130,16 @@ jobs:
       id: meta
       uses: docker/metadata-action@v4
       with:
-        images: ${{ env.REGISTRY }}/${{ env.REPO_OWNER }}/${{ matrix.image }}
+        images: ${{ matrix.image }}
         
-    - name: Build and push Docker images
-      uses: docker/build-push-action@v3
-      with:
-        context: .
-        file: ${{ matrix.dockerfile }}
-        push: true
-        tags: ${{ steps.meta.outputs.tags }}
-        labels: ${{ steps.meta.outputs.labels }}
-        secrets: |
-          GITHUB_TOKEN=${{secrets.GH_TOKEN}} 
+    # - name: Build and push Docker images
+    #   uses: docker/build-push-action@v3
+    #   with:
+    #     context: .
+    #     file: ${{ matrix.dockerfile }}
+    #     push: true
+    #     tags: ${{ steps.meta.outputs.tags }}
+    #     labels: ${{ steps.meta.outputs.labels }}
+    #     secrets: |
+    #       GITHUB_TOKEN=${{secrets.GH_TOKEN}} 
 
