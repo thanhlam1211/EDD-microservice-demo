@@ -123,6 +123,12 @@ jobs:
         # username: ${{ secrets.DOCKER_HUB_USERNAME }}
         # password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
         
+    - name: Log in to the Dockerhub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}
+        password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+        
 #    - name: Build Docker Image with Jib
 #      working-directory: .
 #      run: mvn clean package -P build-docker-image
