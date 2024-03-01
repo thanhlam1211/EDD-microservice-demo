@@ -3,6 +3,7 @@ name: Build and publish images backstage microservice demo
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
+  REPO_OWNER: 121101
   
 on:
   push:
@@ -54,9 +55,6 @@ jobs:
       mysql-2:
         image: mysql:8.0
         env:
-          # The MySQL docker container requires these environment variables to be set
-          # so we can create and migrate the test database.
-          # See: https://hub.docker.com/_/mysql
           MYSQL_DATABASE: inventory-service
           MYSQL_ROOT_PASSWORD: lamdepzai123
         ports:
@@ -76,10 +74,7 @@ jobs:
         
     - name: Run database container
       run: docker run --name mysql -d mysql:8.0 --default-character-set=utf8mb4 --collation=utf8mb4_unicode_ci
-      
-    # - name: Wait for database to start
-    #   run: |
-    #     while ! nc -z mysql 3306; do sleep 3; done
+
     - name: Set up database environment variables for order-service
       env:
         MYSQL_DATABASE: order-service
@@ -120,8 +115,6 @@ jobs:
         registry: ${{ env.REGISTRY }}
         username: ${{ github.actor }}
         password: ${{ secrets.GH_TOKEN }}
-        # username: ${{ secrets.DOCKER_HUB_USERNAME }}
-        # password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
         
     - name: Log in to the Dockerhub
       uses: docker/login-action@v2
@@ -137,7 +130,7 @@ jobs:
       id: meta
       uses: docker/metadata-action@v4
       with:
-        images: ${{ matrix.image }}
+        images: ${{ env.REGISTRY }}/${{ env.REPO_OWNER }}/${{ matrix.image }}
         
     - name: Build and push Docker images
       uses: docker/build-push-action@v3
